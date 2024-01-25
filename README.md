@@ -45,7 +45,15 @@ ssh <username>@pegasus.arc.gwu.edu -i ~/.ssh/id_rsa.pub
 ```
 
 > NOTE: login is currently timing out. Emailed hpchelp@tickets.arc.gwu.edu. Need to investigate further.
+>
+> NOTE: oh you need to be connected to the VPN in order for this to work!?
 
+
+### Creating a Python Environment
+
+Here are some notes about getting Python installed on the server:
+
+> You can install your own Python by installing miniconda or anaconda. If you download the Linux installer on Pegasus you can install it to your home or group directory, as mentioned regarding a virtual Python environment. By using miniconda/anaconda you can create multiple virtual environments with any Python version you wish.
 
 ### Uploading Code
 
