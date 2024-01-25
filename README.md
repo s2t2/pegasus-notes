@@ -27,10 +27,29 @@ cat ~/.ssh/id_rsa.pub
 Fill out this [access requet form](https://hpc.gwu.edu/getting-access/), with the following info:
 
   + PI: Michael Rossetti
-  + Research Group: "Disinformation Research Group" (will be renaming soon to "Data Science Research Group")
+  + Research Group: "Data Science Research Group" (rossettigrp)
   + Clusters: "Pegasus" only should be fine for now.
 
 Paste your public key contents, or upload the public key file directly.
+
+### Secure Network
+
+You must be connected to GWireless on campus, or remotely through the [GW VPN](https://it.gwu.edu/vpn-global-protect).
+
+So you will need a GW email account. Assistants at other universities can use this form to [request a GW account](https://my.gwu.edu/mod/accounts/affiliates/index.cfm).
+
+In terms of downloading the VPN, here are some notes from the site:
+
+> Palo Alto GlobalProtect 6.0.7 for macOS
+>
+> Download PaloAltoGlobalProtect-6.0.7-Mac.pkg (76 MB) (File will begin downloading in a few seconds)
+> Palo Alto GlobalProtect allows remote access to GW resources through an encrypted connection to GW. Portal Address: gwvpn.gwu.edu
+>
+>Compatible with macOS 11 and higher. Note: During installation, also install System Extensions.
+
+After you have downloaded and installed the VPN, use the "GlobalProtect" program, and enter the portal address. Then sign in with your GW microsoft account only to see that apparently your account is blocked due to too many sign in attempts. Come back another day.
+
+TBD
 
 ## Usage
 
@@ -38,16 +57,17 @@ Paste your public key contents, or upload the public key file directly.
 
 Consult this [Getting Started guide](https://hpc.gwu.edu/documentation/getting-started-guide/) for more info.
 
+
 ```sh
 ssh <username>@pegasus.arc.gwu.edu
 
 ssh <username>@pegasus.arc.gwu.edu -i ~/.ssh/id_rsa.pub
 ```
 
-> NOTE: login is currently timing out. Emailed hpchelp@tickets.arc.gwu.edu. Need to investigate further.
->
-> NOTE: oh you need to be connected to the VPN in order for this to work!?
+If you see a "Permission Denied" issue, email support, and they might say... "You will need to use a one-time multifactor code to log in. Please use one of these codes when prompted..." and provide you with some codes. Try to login again.
 
+
+TBD
 
 ### Creating a Python Environment
 
