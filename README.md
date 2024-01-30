@@ -38,6 +38,12 @@ You must be connected to GWireless on campus, or remotely through the [GW VPN](h
 
 So you will need a GW email account. Assistants at other universities can use this form to [request a GW account](https://my.gwu.edu/mod/accounts/affiliates/index.cfm).
 
+#### GWireless
+
+Login success when connected to GWireless!
+
+#### VPN
+
 In terms of downloading the VPN, here are some notes from the site:
 
 > Palo Alto GlobalProtect 6.0.7 for macOS
@@ -49,7 +55,7 @@ In terms of downloading the VPN, here are some notes from the site:
 
 After you have downloaded and installed the VPN, use the "GlobalProtect" program, and enter the portal address. Then sign in with your GW microsoft account only to see that apparently your account is blocked due to too many sign in attempts. Come back another day.
 
-TBD
+TBD - login success not yet acheived via VPN.
 
 ## Usage
 
@@ -64,10 +70,7 @@ ssh <username>@pegasus.arc.gwu.edu
 ssh <username>@pegasus.arc.gwu.edu -i ~/.ssh/id_rsa.pub
 ```
 
-If you see a "Permission Denied" issue, email support, and they might say... "You will need to use a one-time multifactor code to log in. Please use one of these codes when prompted..." and provide you with some codes. Try to login again.
-
-
-TBD
+If you see a "Permission Denied" issue, email support, and they might say... "You will need to use a one-time multifactor code to log in. Please use one of these codes when prompted..." and provide you with some codes. Try to login again, and supply the code. It works. Great!
 
 ### Creating a Python Environment
 
