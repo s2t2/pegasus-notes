@@ -53,7 +53,11 @@ In terms of downloading the VPN, here are some notes from the site:
 >
 >Compatible with macOS 11 and higher. Note: During installation, also install System Extensions.
 
-After you have downloaded and installed the VPN, use the "GlobalProtect" program, and enter the portal address. Then sign in with your GW microsoft account only to see that apparently your account is blocked due to too many sign in attempts. Come back another day.
+After you have downloaded and installed the VPN, you may need to give access to it via the Security and Privacy settings.
+
+To use the VPN, launch the "GlobalProtect" program, and enter the portal address. Then sign in with your GW microsoft account (net_id@gwu.edu).
+
+TBD -  apparently my account is blocked due to too many sign in attempts. Need to try again.
 
 TBD - login success not yet acheived via VPN.
 
@@ -78,8 +82,54 @@ Here are some notes about getting Python installed on the server:
 
 > You can install your own Python by installing miniconda or anaconda. If you download the Linux installer on Pegasus you can install it to your home or group directory, as mentioned regarding a virtual Python environment. By using miniconda/anaconda you can create multiple virtual environments with any Python version you wish.
 
+Looks like there are [installable "modules"](https://hpc.gwu.edu/available-modules/) but only Python 3.7 is available, so we need to install Python ourselves. We can try first [installing on linux via anaconda](https://docs.anaconda.com/free/anaconda/install/linux/).
+
+Python, pip, conda, apt-get not installed by default.
+
+Try to install conda via curl, since apt-get not available. Need to find the version / date of the most recent anaconda (see [anaconda release notes](https://docs.anaconda.com/free/anaconda/release-notes))
+
+Download the installer:
+
+```sh
+# Replace <INSTALLER_VERSION> with the version of the installer file you want to download
+# For example, https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh
+# All installers can be found at repo.anaconda.com/archive/
+#curl -O https://repo.anaconda.com/archive/Anaconda3-<INSTALLER_VERSION>-Linux-x86_64.sh
+
+#curl -O https://repo.anaconda.com/archive/Anaconda3-2023.03-0-Linux-x86_64.sh
+curl -O https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh
+
+
+```
+
+Install anaconda:
+
+```sh
+# Include the bash command even if you aren't using the Bash shell
+# Replace ~/Downloads with the path to the installer file, if necessary
+# Replace <INSTALLER_VERSION> with the version of the installer file
+# For example, Anaconda3-2023.09-0-Linux-x86_64.sh
+#bash ~/Downloads/Anaconda3-<INSTALLER_VERSION>-Linux-x86_64.sh
+
+# reference download location "here" where we ran previous command from
+bash Anaconda3-2023.09-0-Linux-x86_64.sh
+
+```
+
+Press ENTER one at a time until you get to the bottom of the cryptography notice, and it asks you to accept the license, you must say "yes" but if you keep entering it will quit out so do slowly.
+
+Now we verify installation location:
+
+```sh
+PREFIX=/SEAS/home/<username>/anaconda3
+```
+
+> NOTE: conda installation can take 2 hours?
+
+
 ### Uploading Code
 
+TBD
 
 Here is some guidance from support about getting Python code set up on the server...
 
