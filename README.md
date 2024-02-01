@@ -154,7 +154,18 @@ Tried `curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.s
 TBD - need to find out how to install miniconda
 
 
+#### Pre-Installed Module
 
+OK, alternatively, apparently there is a new module for Python 3.10:
+
+```sh
+module load python3/3.10.11
+
+python --version
+pip --version
+```
+
+However we probably still want project-specific virtual environments. So let's still try to progress with anaconda/miniconda.
 
 
 
