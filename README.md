@@ -145,6 +145,12 @@ PREFIX=/SEAS/home/<username>/anaconda3
 > NOTE: conda installation can take 2 hours?  Maybe try miniconda instead?
 
 
+Listing environments:
+
+```sh
+conda info --envs
+```
+
 #### Installing Miniconda
 
 
@@ -152,6 +158,18 @@ PREFIX=/SEAS/home/<username>/anaconda3
 Tried `curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh` but no luck.
 
 TBD - need to find out how to install miniconda
+
+
+Maybe use pre-installed miniconda module:
+
+```sh
+module load miniconda/miniconda3
+```
+
+Yes, this works!!!
+
+
+Use this!!!
 
 
 #### Pre-Installed Module
