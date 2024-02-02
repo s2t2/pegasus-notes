@@ -81,6 +81,18 @@ After using one of the OTP codes to login for the first time, run `google-authen
 
 Your home folder is `/SEAS/home/<username>`.
 
+Be aware of your SSH keys and SSH config:
+
+```sh
+ll ~/.ssh
+#> authorized_keys
+#> cluster
+#> cluster.pub
+#> config
+#> id_ecdsa
+#> id_ecdsa.pub
+#> known_hosts
+```
 
 
 
@@ -145,7 +157,35 @@ Cloning a repo from GitHub:
 git clone git@github.com:s2t2/pegasus-notes.git
 ```
 
-TBD - right now this is running into permission issues, need to configure SSH keys from the server to GitHub, or copy ssh keys up to the server via scp...
+###
+
+Generating SSH key on the server:
+
+```sh
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+This creates a new "id_ed25519.pub" pair. Upload it to GitHub via the SSH settings.
+
+```sh
+cat ~/.ssh/id_ed25519.pub
+#> copy then paste in GitHub
+```
+
+Setup ssh agent?
+
+```sh
+eval "$(ssh-agent -s)"
+#> Agent pid 59566
+
+
+ssh-add ~/.ssh/id_ed25519
+```
+
+
+Try to clone again and it should work. Might need to wait a few minutes for changes to take effect?
+
+
 
 ## Running Python Programs
 
