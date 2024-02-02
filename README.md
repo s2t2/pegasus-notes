@@ -123,15 +123,17 @@ conda create -n my-first-env python=3.10
 #conda activate my-first-env
 # conda command may require some bashrc setup, they want us to use source instead:
 source activate my-first-env
+```
 
+Verify the environment is setup properly:
+
+```sh
 python --version
 pip --version
 
 python -i # enter into python shell, test things out
 # exit()
 ```
-
-
 
 
 
@@ -157,7 +159,9 @@ Cloning a repo from GitHub:
 git clone git@github.com:s2t2/pegasus-notes.git
 ```
 
-###
+You may run into permissions issues. Need to configure SSH connection from server to GitHub (see section below).
+
+### Configuring GitHub SSH Keys
 
 Generating SSH key on the server:
 
