@@ -2,6 +2,8 @@
 
 Notes for connecting to GW's [high performance computing cluster](https://hpc.gwu.edu), Pegasus.
 
+Consult this [Getting Started guide](https://hpc.gwu.edu/documentation/getting-started-guide/) for more info.
+
 ## Getting Started
 
 ### Generating SSH Keys
@@ -22,7 +24,7 @@ Print the contents of the public key:
 cat ~/.ssh/id_rsa.pub
 ```
 
-### Submit Access Reqest Form
+### Access Reqest Form
 
 Fill out this [access requet form](https://hpc.gwu.edu/getting-access/), with the following info:
 
@@ -59,8 +61,6 @@ To use the VPN, launch the "GlobalProtect" program, and enter the portal address
 
 
 ## Logging In
-
-Consult this [Getting Started guide](https://hpc.gwu.edu/documentation/getting-started-guide/) for more info.
 
 Log in using the SSH credentials you submitted via the access request form:
 
@@ -151,7 +151,7 @@ python -i # enter into python shell, test things out
 
 ## Version Control (Git)
 
-We need to clone repositories from GitHub. It looks like git is pre-installed on the server:
+We need to clone repositories from GitHub. We'll use git. It looks like git is pre-installed on the server:
 
 ```sh
 which git
@@ -169,7 +169,7 @@ git clone git@github.com:s2t2/pegasus-notes.git
 
 You may run into permissions issues the first time, in which case you'll need to configure SSH connection from server to GitHub (see section below).
 
-### Configuring SSH Keys for GitHub
+### Generating SSH Keys for GitHub
 
 Generating a new SSH key (run this on the server):
 
@@ -177,16 +177,14 @@ Generating a new SSH key (run this on the server):
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
-This creates a new "id_ed25519.pub" key pair.
-
-Upload it to your GitHub account via the SSH settings.
+This creates a new "id_ed25519.pub" key pair. Upload the resulting public key via your GitHub account's SSH settings.
 
 ```sh
 cat ~/.ssh/id_ed25519.pub
 #> copy then paste in GitHub
 ```
 
-Also setup ssh agent!
+Also setup the ssh agent:
 
 ```sh
 eval "$(ssh-agent -s)"
@@ -196,12 +194,14 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 ```
 
-Try to clone again and it should work? Yes!
+Afterwards, when you try to clone again, it should work.
 
 
 ## Running Python Applications
 
 We can use this [example Python application](https://github.com/s2t2/tic-tac-toe-py), a game of tic tac toe. Verify you should be able to setup the app, install requirements, and play a game:
+
+Repo setup:
 
 ```sh
 git clone git@github.com:s2t2/tic-tac-toe-py.git
@@ -211,11 +211,19 @@ conda create -n tictactoe-env python=3.8
 source activate tictactoe-env
 
 pip install -r requirements.txt
-
-python -m app.game
 ```
 
-> NOTE: environment creation and package installation can take a long time :-/
+> NOTE: environment creation and package installation can take a long... long ... long ... long ... time :-/
+
+
+Usage:
+
+```sh
+python -m app.game
+
+X_STRATEGY="COMPUTER-HARD" O_STRATEGY="COMPUTER-EASY" GAME_COUNT=100 python -m app.jobs.play_games
+
+```
 
 
 
