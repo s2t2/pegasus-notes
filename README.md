@@ -55,18 +55,19 @@ In terms of [downloading the VPN](https://it.gwu.edu/vpn-global-protect), here a
 
 After you have downloaded and installed the VPN, you may need to give access to it via the Security and Privacy settings.
 
-To use the VPN, launch the "GlobalProtect" program, and enter the portal address. Then sign in with your GW microsoft account (net_id@gwu.edu).
+To use the VPN, launch the "GlobalProtect" program, and enter the portal address. Then sign in with your GW microsoft account ("example@gwu.edu").
 
 
 ## Logging In
 
 Consult this [Getting Started guide](https://hpc.gwu.edu/documentation/getting-started-guide/) for more info.
 
+Log in using the SSH credentials you submitted via the access request form:
 
 ```sh
 ssh <username>@pegasus.arc.gwu.edu
 
-ssh <username>@pegasus.arc.gwu.edu -i ~/.ssh/id_rsa.pub
+# ssh <username>@pegasus.arc.gwu.edu -i ~/.ssh/id_rsa.pub
 ```
 
 If you see a "Permission Denied" issue, email support, and they might say... "You will need to use a one-time multifactor code to log in. Please use one of these codes when prompted..." and provide you with some codes. Try to login again, and supply the code. It works. Great!
@@ -107,7 +108,9 @@ There are many [installable "modules"](https://hpc.gwu.edu/available-modules/) a
 module load miniconda/miniconda3
 ```
 
-Once installed, we should have access to anaconda command line tool.
+You will need to run this every time you login to the server?
+
+Once loaded, we should have access to anaconda command line tool.
 
 Listing environments:
 
@@ -122,6 +125,7 @@ conda create -n my-first-env python=3.10
 
 #conda activate my-first-env
 # conda command may require some bashrc setup, they want us to use source instead:
+
 source activate my-first-env
 ```
 
@@ -136,6 +140,7 @@ python -i # enter into python shell, test things out
 ```
 
 
+> NOTE: "the python virtual environment can be built in your home directory (/SEAS/home/<username>), or group directory (/SEAS/groups/<groupname>) to share with others in your group, or on the lustre (/lustre/groups/<groupname>), and similar to any packages you need."
 
 
 
@@ -144,13 +149,16 @@ python -i # enter into python shell, test things out
 
 
 
-## Uploading Code
+## Version Control (Git)
 
 We need to clone repositories from GitHub. It looks like git is pre-installed on the server:
 
 ```sh
 which git
+#> /usr/bin/git
+
 git --version
+#> git version 2.39.3
 ```
 
 Attempting to clone a repo from GitHub:
@@ -159,51 +167,64 @@ Attempting to clone a repo from GitHub:
 git clone git@github.com:s2t2/pegasus-notes.git
 ```
 
-You may run into permissions issues. Need to configure SSH connection from server to GitHub (see section below).
+You may run into permissions issues the first time, in which case you'll need to configure SSH connection from server to GitHub (see section below).
 
 ### Configuring SSH Keys for GitHub
 
-Generating SSH key on the server:
+Generating a new SSH key (run this on the server):
 
 ```sh
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
-This creates a new "id_ed25519.pub" key pair. Upload it to GitHub via the SSH settings.
+This creates a new "id_ed25519.pub" key pair.
+
+Upload it to your GitHub account via the SSH settings.
 
 ```sh
 cat ~/.ssh/id_ed25519.pub
 #> copy then paste in GitHub
 ```
 
-
-TBD - Also setup ssh agent?
+Also setup ssh agent!
 
 ```sh
 eval "$(ssh-agent -s)"
-#> Agent pid 59566
+#> Agent pid 123456
 
 
 ssh-add ~/.ssh/id_ed25519
 ```
 
-
-Try to clone again and it should work? Might need to wait a few minutes for changes to take effect?
-
+Try to clone again and it should work? Yes!
 
 
+## Running Python Applications
 
-## Running Python Programs
+We can use this [example Python application](https://github.com/s2t2/tic-tac-toe-py), a game of tic tac toe. Verify you should be able to setup the app, install requirements, and play a game:
 
-Here is some guidance from support about getting Python code set up on the server...
+```sh
+git clone git@github.com:s2t2/tic-tac-toe-py.git
+cd tic-tac-toe-py/
 
-> The git module should be available to run git clone and git pull, and git push, you cannot push from github, but initiate the transfer from Pegasus.
+conda create -n tictactoe-env python=3.8
+source activate tictactoe-env
+
+pip install -r requirements.txt
+
+python -m app.game
+```
+
+> NOTE: environment creation and package installation can take a long time :-/
+
+
+
+## Scheduling Jobs
+
+
+> NOTE: "please do not run jobs against the NFS shares (/SEAS/home/) and groups (/SEAS/groups) but use /lustre instead, i.e. files should be read from and written to /lustre/groups/<groupname> directory."
 >
-> The python virtual environment can be built in your home directory (/SEAS/home/<username>), or group directory (/SEAS/groups/<groupname>) to share with others in your group, or on the lustre (/lustre/groups/<groupname>), and similar to any packages you need.
->
-> Please do not run jobs against the NFS shares (/SEAS/home/) and groups (/SEAS/groups) but use /lustre instead, i.e. files should be read from and written to /lustre/groups/<groupname> directory.
->
-> We use slurm for job scheduling which can run into interactive move (salloc) or batch mode (sbatch). The batch mode requires a shell script as a wrapper to call your python code.
+> NOTE: "we use slurm for job scheduling which can run into interactive move (salloc) or batch mode (sbatch). The batch mode requires a shell script as a wrapper to call your python code."
 
 Example shell script:
 
@@ -218,3 +239,5 @@ Example shell script:
 . ~/miniconda3/etc/profile.d/conda.sh
 python3 ~/temperature.py | sort -n
 ```
+
+TBD - verify this when we need to schedule some jobs
