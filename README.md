@@ -225,6 +225,14 @@ X_STRATEGY="COMPUTER-HARD" O_STRATEGY="COMPUTER-EASY" GAME_COUNT=100 python -m a
 
 ```
 
+## Downloading Files
+
+Use scp to upload or download files to/from the server. Note: you may be asked for your multifactor code whenever you initiate a file transfer.
+
+```sh
+scp <username>@pegasus.arc.gwu.edu:/SEAS/home/<username>/projects/tic-tac-toe-py/data/games/x_minimax_vs_o_random_100.csv ~/Downloads
+
+```
 
 
 ## Scheduling Jobs
