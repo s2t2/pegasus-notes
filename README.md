@@ -26,7 +26,7 @@ cat ~/.ssh/id_rsa.pub
 
 ### Access Reqest Form
 
-Fill out this [access requet form](https://hpc.gwu.edu/getting-access/), with the following info:
+Fill out this [access requet form](https://hpc.gwu.edu/getting-access/), with info like the following:
 
   + PI: Michael Rossetti
   + Research Group: "Data Science Research Group" (rossettigrp)
